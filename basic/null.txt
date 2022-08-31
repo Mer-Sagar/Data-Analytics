@@ -1,0 +1,50 @@
+ 
+
+					     *--------------------------------------------*
+					     |	     Removing Null & Duplicate data.        |
+					     *--------------------------------------------*
+
+
+
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv("train.csv")
+
+# removing all nullvalues rows:
+f1 = df.dropna() # drops rows with 1 or more Null value
+print(f1.isnull().sum())
+
+#removing all Duplicates value:
+f2=df.drop_duplicates(subset="Name",keep= False,inplace=True)
+print("duplicate Data:",f2)
+
+
+
+
+*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*
+
+
+					     *--------------------------------------------*
+					     |	 	      	Output		          |
+					     *--------------------------------------------*
+
+
+
+PS C:\RCC\MCA2\DA\New folder> py .\null.py
+PassengerId    0
+Survived       0
+Pclass         0
+Name           0
+Sex            0
+Age            0
+SibSp          0
+Parch          0
+Ticket         0
+Fare           0
+Cabin          0
+Embarked       0
+dtype: int64
+duplicate Data: None
+

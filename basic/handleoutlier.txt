@@ -1,0 +1,44 @@
+ 
+
+					     *--------------------------------------------*
+					     |	          Handeling Outlier.              |
+					     *--------------------------------------------*
+
+
+
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+sample= [15, 101, 18, 7, 13, 16, 11, 21, 5, 15, 10, 9]
+
+# Finding Outliers:
+
+# Computing 10th, 90th percentiles and replacing the outliers
+tenth_percentile = np.percentile(sample, 10)
+ninetieth_percentile = np.percentile(sample, 90)
+
+# print(tenth_percentile, ninetieth_percentile)
+b = np.where(sample<tenth_percentile, tenth_percentile, sample)
+b = np.where(b>ninetieth_percentile, ninetieth_percentile, b)
+
+print("Sample:", sample)
+print("Data after Removing Outlier:\n",b)
+
+
+
+
+
+*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*
+
+
+					     *--------------------------------------------*
+					     |	 	      	Output		          |
+					     *--------------------------------------------*
+
+
+
+PS C:\RCC\MCA2\DA\New folder> py .\handleout.py
+Sample Data with Outlier: [15, 101, 18, 7, 13, 16, 11, 21, 5, 15, 10, 9]
+Data after Removing Outlier:
+ [15.  20.7 18.   7.2 13.  16.  11.  20.7  7.2 15.  10.   9. ]

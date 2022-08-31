@@ -1,0 +1,76 @@
+ 
+
+
+					     *--------------------------------------------*
+					     |      implementation of Co-Varience.        |
+					     *--------------------------------------------*
+
+
+
+import pandas as pd
+import math
+df=pd.read_csv("covariance.csv")
+
+mean_x=sum(df['x'])/df.shape[0]
+mean_y=sum(df['y'])/df.shape[0]
+
+xi_x=[]
+yi_y=[]
+sq_xi_x = []
+sq_yi_y = []
+xi_x_yi_y=[]
+
+for i in range(df.shape[0]):
+    xi_x.append(round((df.iat[i,0] - mean_x),2))
+    yi_y.append(round((df.iat[i,1] - mean_y),2))
+    sq_xi_x.append(round(pow(xi_x[i],2),2))
+    sq_yi_y.append(round(pow(yi_y[i],2),2))
+    xi_x_yi_y.append(round(((xi_x[i])*(yi_y[i])),2))
+    
+df['xi-x'] = xi_x
+df['yi-y'] = yi_y
+df['(xi-x)2']=sq_xi_x
+df['(yi-y)2']=sq_yi_y
+df['(xi-x)(yi-y)'] = xi_x_yi_y
+
+vx=sum(sq_xi_x)/len(sq_xi_x)
+vy=sum(sq_yi_y)/len(sq_yi_y)
+
+sxy=sum(xi_x_yi_y)/len(xi_x_yi_y)
+sx=math.sqrt(vx)
+sy=math.sqrt(vy)
+rxy=round((sxy/(sx*sy)),2)
+
+print("\n",df)
+print("\nmean of x =",mean_x)
+print("mean of y =",mean_y)
+print("\nCovariance =",sxy)
+print("Coefficient of correlation =",rxy)
+
+
+
+
+
+*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*
+
+
+					     *--------------------------------------------*
+					     |	 	      	Output		          |
+					     *--------------------------------------------*
+
+
+
+PS C:\RCC\MCA2\DA\New folder> py .\covariance.py 
+
+     x   y  xi-x  yi-y  (xi-x)2  (yi-y)2  (xi-x)(yi-y)
+0   6   6 -10.0  -4.0    100.0     16.0          40.0
+1  11   9  -5.0  -1.0     25.0      1.0           5.0
+2  15   6  -1.0  -4.0      1.0     16.0           4.0
+3  21  17   5.0   7.0     25.0     49.0          35.0
+4  27  12  11.0   2.0    121.0      4.0          22.0
+
+mean of x = 16.0
+mean of y = 10.0
+
+Covariance = 21.2
+Coefficient of correlation = 0.69

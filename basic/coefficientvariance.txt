@@ -1,0 +1,66 @@
+ 
+
+					*------------------------------------------------------*
+					|	implementation of Coefficient of Varience.     |
+					*------------------------------------------------------*
+
+
+
+import math
+#import statistics
+import pandas as pd
+
+data = [28,42,58,48,45,55,60,49,50]
+
+df = pd.DataFrame(data,columns=['x'])
+M = (round((sum(data)/len(data)),2))
+xi_x = []
+sq_xi_x = []
+
+
+for i in range(df.shape[0]):
+    xi_x.append(round((df.iat[i,0]-M),2))
+    sq_xi_x.append(round(pow(xi_x[i],2),2))
+    
+df['xi-x'] = xi_x    
+df['(xi-x)2']=sq_xi_x
+
+variance=(round(sum(sq_xi_x)/len(sq_xi_x),2))
+std_dev=(round(math.sqrt(variance),2))
+co=(round(((std_dev/M)*100),2))
+
+print('\n',df)
+print("\nmean =",M)
+print("variance =",variance)
+print("standard deviation =",std_dev)
+print("coefficient of variation =",co,"%")
+
+
+
+
+*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*
+
+
+					     *--------------------------------------------*
+					     |	 	      	Output		          |
+					     *--------------------------------------------*
+
+
+
+PS C:\RCC\MCA2\DA\New folder> py .\Varience.py
+
+     x   xi-x  (xi-x)2
+0  28 -20.33   413.31
+1  42  -6.33    40.07
+2  58   9.67    93.51
+3  48  -0.33     0.11
+4  45  -3.33    11.09
+5  55   6.67    44.49
+6  60  11.67   136.19
+7  49   0.67     0.45
+8  50   1.67     2.79
+
+mean = 48.33
+variance = 82.45
+standard deviation = 9.08
+coefficient of variation = 18.79 %

@@ -1,0 +1,112 @@
+ 
+
+					     *--------------------------------------------*
+					     |	        Handling Missing Values.          |
+					     *--------------------------------------------*
+
+
+
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv("train.csv")
+
+print(df.isnull().sum())
+# Handling Missing Values:
+
+fillAge=df
+
+#fill missing age with 18
+fillAge['Age'] = fillAge['Age'].fillna(18)
+
+fillAgex=df
+#fill missing age with mean value
+fillAgex['Age'] = fillAgex['Age'].fillna(fillAgex['Age'].mean())
+
+fillAgem=df
+#fill missing age with median value
+fillAgem['Age'] = fillAgem['Age'].fillna(fillAgem['Age'].mean())
+
+fillAgez=df
+#fill missing age with mode value
+fillAgez['Age'] = fillAgez['Age'].fillna(fillAgez['Age'].mode())
+
+print(fillAgez.isnull().sum())
+
+# Forward-Fill
+df.fillna(method='ffill')
+print(df.isnull().sum())
+
+f1=df
+# Backward-Fill
+f1.fillna(method='ffill')
+print(f1.isnull().sum())
+
+
+
+
+
+*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*
+
+
+					     *--------------------------------------------*
+					     |	 	      	Output		          |
+					     *--------------------------------------------*
+
+
+
+PS C:\RCC\MCA2\DA\New folder> py .\missingvalues.py
+PassengerId      0
+Survived         0
+Pclass           0
+Name             0
+Sex              0
+Age            177
+SibSp            0
+Parch            0
+Ticket           0
+Fare             0
+Cabin          687
+Embarked         2
+dtype: int64
+PassengerId      0
+Survived         0
+Pclass           0
+Name             0
+Sex              0
+Age              0
+SibSp            0
+Parch            0
+Ticket           0
+Fare             0
+Cabin          687
+Embarked         2
+dtype: int64
+PassengerId      0
+Survived         0
+Pclass           0
+Name             0
+Sex              0
+Age              0
+SibSp            0
+Parch            0
+Ticket           0
+Fare             0
+Cabin          687
+Embarked         2
+dtype: int64
+PassengerId      0
+Survived         0
+Pclass           0
+Name             0
+Sex              0
+Age              0
+SibSp            0
+Parch            0
+Ticket           0
+Fare             0
+Cabin          687
+Embarked         2
+dtype: int64
+

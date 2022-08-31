@@ -1,0 +1,64 @@
+ 
+
+					*-------------------------------------------------*
+					|  implementation of Varience,standard deviation. |
+					*-------------------------------------------------*
+
+
+
+import math
+import pandas as pd
+
+data = [28,42,58,48,45,55,60,49,50]
+
+df = pd.DataFrame(data,columns=['x'])
+M = sum(data)/len(data)
+xi_x = []
+
+for i in range(df.shape[0]):
+    xi_x.append(df.iat[i,0]-M)
+    
+df['xi-x'] = xi_x
+sq_xi_x = []    
+
+for i in range(df.shape[0]):
+    sq_xi_x.append(round(pow(df.iat[i,1],2), 2))
+    
+    
+df['(xi-x)2']=sq_xi_x
+variance=sum(sq_xi_x)/len(sq_xi_x)
+std_dev=math.sqrt(variance)
+
+print(df)
+
+print("variance =",variance)
+print("standard deviation =",std_dev)
+
+
+
+
+
+*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*
+
+
+					     *--------------------------------------------*
+					     |	 	      	Output		          |
+					     *--------------------------------------------*
+
+
+
+PS C:\RCC\MCA2\DA\New folder> py .\Varience.py
+    x       xi-x  (xi-x)2
+0  28 -20.333333   413.44
+1  42  -6.333333    40.11
+2  58   9.666667    93.44
+3  48  -0.333333     0.11
+4  45  -3.333333    11.11
+5  55   6.666667    44.44
+6  60  11.666667   136.11
+7  49   0.666667     0.44
+8  50   1.666667     2.78
+
+variance = 82.44222222222224
+
+standard deviation = 9.079769943243178
